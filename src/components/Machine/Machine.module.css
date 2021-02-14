@@ -1,0 +1,50 @@
+.machine {
+    width: 550px;
+    border: 1px solid black;
+    height: 100%;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.info {
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+.infoEntry {
+    border-bottom: 1px solid black;
+    text-align: right;
+    position: relative;
+}
+
+.bar {
+    background: aqua;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: -1;
+}
+
+.cpuBar {
+    background: #6fb246
+}
+
+.memoryBar {
+    background: #1896d1
+}
+
+.storageBar {
+    background: #8bcbde
+}
+
+.vms {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    min-height: 100px;
+}
