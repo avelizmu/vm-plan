@@ -10,10 +10,11 @@ type MachineProps = {
     onDrop: (item: any, monitor: DropTargetMonitor) => any,
     vms: VMType[],
     onDeleteVm: (vm: VMType) => void,
-    onRemoveVMFromContainer: (vm: VMType) => void
+    onRemoveVMFromContainer: (vm: VMType) => void,
+    onDelete: () => void
 }
 
-export default function Machine({machine, onDrop, vms, onDeleteVm, onRemoveVMFromContainer}: MachineProps) {
+export default function Machine({machine, onDrop, vms, onDeleteVm, onRemoveVMFromContainer, onDelete}: MachineProps) {
     const [{canDrop, isOver}, drop] = useDrop({
         accept: 'vm',
         drop: onDrop,
@@ -39,5 +40,6 @@ export default function Machine({machine, onDrop, vms, onDeleteVm, onRemoveVMFro
                 vms.map(vm => <VirtualMachine vm={vm} onDelete={() => onDeleteVm(vm)} onRemoveFromContainer={() => onRemoveVMFromContainer(vm)}/>)
             }
         </div>
+        <button className={styles.deleteButton} onClick={onDelete}>X</button>
     </div>
 }

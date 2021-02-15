@@ -22,12 +22,7 @@ export type MachineType = {
 
 export default function Plan() {
     const [VMs, setVMs] = useState<VMType[]>([]);
-    const [machines, setMachines] = useState<MachineType[]>([{
-        name: 'zero',
-        maxCpu: 24,
-        maxMemory: 72,
-        maxStorage: 800
-    }]);
+    const [machines, setMachines] = useState<MachineType[]>([]);
 
     const maxCpu = machines.reduce((acc, curr) => acc + curr.maxCpu, 0)
     const maxMemory = machines.reduce((acc, curr) => acc + curr.maxMemory, 0)
@@ -89,6 +84,8 @@ export default function Plan() {
                             ...vm,
                             machine: undefined
                         }])
+                    }} onDelete={() => {
+                        setMachines(machines.filter(m => m.name !== machine.name))
                     }}/>
                 })
             }

@@ -17,3 +17,10 @@
     flex-wrap: wrap;
     min-height: 100px;
 }
+
+.deleteButton {
+    width: 100%;
+    background: red;
+    border: 1px solid black;
+    cursor: pointer;
+}
