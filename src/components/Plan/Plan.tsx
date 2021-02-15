@@ -69,6 +69,8 @@ export default function Plan() {
                                 machine: machine.name
                             }
                         ])
+                    }} onDeleteVm={(vm) => {
+                        setVMs(VMs.filter(v => v.name !== vm.name))
                     }}/>
                 })
             }
@@ -105,7 +107,7 @@ export default function Plan() {
         </button>
         <div className={styles.initialVmZone}>
             {
-                VMs.filter(vm => !vm.machine).map(vm => <VirtualMachine vm={vm}/>)
+                VMs.filter(vm => !vm.machine).map(vm => <VirtualMachine vm={vm} onDelete={() => setVMs(VMs.filter(v => v.name !== vm.name))}/>)
             }
         </div>
     </div>

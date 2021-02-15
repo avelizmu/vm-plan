@@ -7,10 +7,11 @@ import VirtualMachine from "../VirtualMachine/VirtualMachine";
 type MachineProps = {
     machine: MachineType
     onDrop: (item: any, monitor: DropTargetMonitor) => any,
-    vms: VMType[]
+    vms: VMType[],
+    onDeleteVm: (vm: VMType) => void
 }
 
-export default function Machine({machine, onDrop, vms}: MachineProps) {
+export default function Machine({machine, onDrop, vms, onDeleteVm}: MachineProps) {
     const [{canDrop, isOver}, drop] = useDrop({
         accept: 'vm',
         drop: onDrop,
@@ -66,7 +67,7 @@ export default function Machine({machine, onDrop, vms}: MachineProps) {
 
         <div className={styles.vms}>
             {
-                vms.map(vm => <VirtualMachine vm={vm}/>)
+                vms.map(vm => <VirtualMachine vm={vm} onDelete={() => onDeleteVm(vm)}/>)
             }
         </div>
     </div>

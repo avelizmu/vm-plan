@@ -3,10 +3,11 @@ import {VMType} from "../Plan/Plan";
 import styles from './VirtualMachine.module.css';
 
 type VirtualMachineProps = {
-    vm: VMType
+    vm: VMType,
+    onDelete: () => void
 }
 
-export default function VirtualMachine({vm}: VirtualMachineProps) {
+export default function VirtualMachine({vm, onDelete}: VirtualMachineProps) {
     const [{isDragging}, drag] = useDrag({
         item: {
             ...vm,
@@ -46,5 +47,6 @@ export default function VirtualMachine({vm}: VirtualMachineProps) {
                 vm.storage
             }
         </div>
+        <button className={styles.deleteButton} onClick={onDelete}>X</button>
     </div>
 }
