@@ -1,0 +1,32 @@
+.info {
+    width: 100%;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.infoEntry {
+    border-bottom: 1px solid black;
+    text-align: right;
+    position: relative;
+}
+
+.bar {
+    background: aqua;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: -1;
+    transition: width ease-in-out 0.5s;
+}
+
+.cpuBar {
+    background: #6fb246;
+}
+
+.memoryBar {
+    background: #1896d1;
+}
+
+.storageBar {
+    background: #8bcbde;
+}

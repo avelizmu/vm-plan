@@ -3,6 +3,7 @@ import {DropTargetMonitor} from "react-dnd/lib/interfaces/monitors";
 import styles from './Machine.module.css';
 import {MachineType as MachineType, VMType} from "../Plan/Plan";
 import VirtualMachine from "../VirtualMachine/VirtualMachine";
+import StatsBars from "../StatsBars/StatsBars";
 
 type MachineProps = {
     machine: MachineType
@@ -31,40 +32,7 @@ export default function Machine({machine, onDrop, vms, onDeleteVm, onRemoveVMFro
             {machine.name}
         </div>
 
-        <div className={styles.info}>
-            <div className={styles.infoEntry}>
-                <div>
-                    CPU Cores:
-                    {currentCPU}
-                    /
-                    {machine.maxCpu}
-                </div>
-
-                <div className={[styles.bar, styles.cpuBar].join(' ')} style={{width: `${(currentCPU / machine.maxCpu) * 100}%`}}/>
-            </div>
-
-            <div className={styles.infoEntry}>
-                <div>
-                    RAM (GB):
-                    {currentMemory}
-                    /
-                    {machine.maxMemory}
-                </div>
-
-                <div className={[styles.bar, styles.memoryBar].join(' ')} style={{width: `${(currentMemory / machine.maxMemory) * 100}%`}}/>
-            </div>
-
-            <div className={styles.infoEntry}>
-                <div>
-                    Storage (GB):
-                    {currentStorage}
-                    /
-                    {machine.maxStorage}
-                </div>
-
-                <div className={[styles.bar, styles.storageBar].join(' ')} style={{width: `${(currentStorage / machine.maxStorage) * 100}%`}}/>
-            </div>
-        </div>
+        <StatsBars currentCPU={currentCPU} maxCPU={machine.maxCpu} currentMemory={currentMemory} maxMemory={machine.maxMemory} currentStorage={currentStorage} maxStorage={machine.maxStorage}/>
 
         <div className={styles.vms}>
             {
