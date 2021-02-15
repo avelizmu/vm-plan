@@ -4,10 +4,11 @@ import styles from './VirtualMachine.module.css';
 
 type VirtualMachineProps = {
     vm: VMType,
-    onDelete: () => void
+    onDelete: () => void,
+    onRemoveFromContainer: () => void
 }
 
-export default function VirtualMachine({vm, onDelete}: VirtualMachineProps) {
+export default function VirtualMachine({vm, onDelete, onRemoveFromContainer}: VirtualMachineProps) {
     const [{isDragging}, drag] = useDrag({
         item: {
             ...vm,
@@ -16,7 +17,12 @@ export default function VirtualMachine({vm, onDelete}: VirtualMachineProps) {
         collect: (monitor) => ({
             isDragging: monitor.isDragging(),
             handlerId: monitor.getHandlerId
-        })
+        }),
+        end: (draggedItem, monitor) => {
+            if(!monitor.didDrop()) {
+                onRemoveFromContainer()
+            }
+        }
     })
 
     if(isDragging) {
