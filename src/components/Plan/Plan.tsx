@@ -29,7 +29,7 @@ export default function Plan() {
     }]);
 
     return <div>
-        <button onClick={() => {
+        <button className={styles.addButton} onClick={() => {
             const name = prompt('Name of machine:');
             if(!name)
                 return;
@@ -76,7 +76,7 @@ export default function Plan() {
             }
         </div>
 
-        <button onClick={() => {
+        <button className={styles.addButton} onClick={() => {
             const name = prompt('Name of VM:');
             if(!name)
                 return;
