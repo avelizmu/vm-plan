@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# vm-plan
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+vm-plan is a web app tool used to plan virtual machine usage and distribution across multiple physical machines
+according to resource requirements.
 
-## Available Scripts
+You're able to create physical and virtual machines with resource requirements according to your specifications. You're
+then able to drag the virtual machines around the different physical machines to have a visual way of planning resource
+requirements.
 
-In the project directory, you can run:
+## Download
+To download and use this project, follow these steps:
 
-### `yarn start`
+* `git clone https://github.com/aveliz1999/vm-plan`
+* `cd vm-plan`
+* `npm install`
+* `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ This will start the web server and serve the app on http://localhost:3000
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ You can change the port with the `PORT` environment variable
+ 
+## Usage
 
-### `yarn test`
+### Add machines
+You can add more physical machines to have access to
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![add machines](readme/add_machine.gif)
 
-### `yarn build`
+### Add VMs
+You can also add more virtual machines that will take up resources
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![add vm](readme/add_vm.gif)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Move Around
+You can move around the virtual machines into different machines and get immediate feedback on resource usage.
+Dragging the virtual machine into a physical machine will make it become a part of that machine and use up its resources.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Dragging a virtual machine to a location without any physical machines will remove it and put it back in the initial pool
+of unallocated virtual machines. Pressing the red X at the bottom will delete them.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![move around](readme/move_around.gif)
