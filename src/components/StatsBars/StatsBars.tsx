@@ -10,6 +10,22 @@ type StatsBarsProps = {
 }
 
 export default function StatsBars({currentCPU, maxCPU, currentMemory, maxMemory, currentStorage, maxStorage}: StatsBarsProps) {
+    let cpu = (currentCPU / maxCPU) * 100;
+    if(isNaN(cpu)) {
+        cpu = 0;
+    }
+
+    let memory = (currentMemory / maxMemory) * 100;
+    if(isNaN(memory)) {
+        memory = 0;
+    }
+
+    let storage = (currentStorage / maxStorage) * 100;
+    if(isNaN(storage)) {
+        storage = 0;
+    }
+
+
     return <div className={styles.info}>
         <div className={styles.infoEntry}>
             <div>
@@ -19,7 +35,7 @@ export default function StatsBars({currentCPU, maxCPU, currentMemory, maxMemory,
                 {maxCPU}
             </div>
 
-            <div className={[styles.bar, styles.cpuBar].join(' ')} style={{width: `${(currentCPU / maxCPU) * 100}%`}}/>
+            <div className={[styles.bar, styles.cpuBar].join(' ')} style={{width: `${cpu}%`}}/>
         </div>
 
         <div className={styles.infoEntry}>
@@ -30,7 +46,7 @@ export default function StatsBars({currentCPU, maxCPU, currentMemory, maxMemory,
                 {maxMemory}
             </div>
 
-            <div className={[styles.bar, styles.memoryBar].join(' ')} style={{width: `${(currentMemory / maxMemory) * 100}%`}}/>
+            <div className={[styles.bar, styles.memoryBar].join(' ')} style={{width: `${memory}%`}}/>
         </div>
 
         <div className={styles.infoEntry}>
@@ -41,7 +57,7 @@ export default function StatsBars({currentCPU, maxCPU, currentMemory, maxMemory,
                 {maxStorage}
             </div>
 
-            <div className={[styles.bar, styles.storageBar].join(' ')} style={{width: `${(currentStorage / maxStorage) * 100}%`}}/>
+            <div className={[styles.bar, styles.storageBar].join(' ')} style={{width: `${storage}%`}}/>
         </div>
     </div>
 }
