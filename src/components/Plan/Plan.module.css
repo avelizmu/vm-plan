@@ -18,4 +18,12 @@
     height: 50px;
     background: antiquewhite;
     border: none;
+    border: 1px solid black;
+    margin-top: 15px;
+}
+
+.totalUsageLabel {
+    width: 100%;
+    text-align: center;
+    font-size: 15pt;
 }

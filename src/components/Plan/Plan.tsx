@@ -2,6 +2,7 @@ import Machine from "../Machine/Machine";
 import VirtualMachine from "../VirtualMachine/VirtualMachine";
 import {useState} from "react";
 import styles from './Plan.module.css';
+import StatsBars from "../StatsBars/StatsBars";
 
 export type VMType = {
     name: string,
@@ -28,7 +29,19 @@ export default function Plan() {
         maxStorage: 800
     }]);
 
+    const maxCpu = machines.reduce((acc, curr) => acc + curr.maxCpu, 0)
+    const maxMemory = machines.reduce((acc, curr) => acc + curr.maxMemory, 0)
+    const maxStorage = machines.reduce((acc, curr) => acc + curr.maxStorage, 0)
+
+    const currentCpu = maxCpu - VMs.filter(vm => !!vm.machine).reduce((acc, curr) => acc + curr.cpu, 0)
+    const currentMemory = maxMemory - VMs.filter(vm => !!vm.machine).reduce((acc, curr) => acc + curr.memory, 0)
+    const currentStorage = maxStorage - VMs.filter(vm => !!vm.machine).reduce((acc, curr) => acc + curr.storage, 0)
+
     return <div>
+        <div className={styles.totalUsageLabel}>
+            Total Resource Usage:
+        </div>
+        <StatsBars currentCPU={currentCpu} maxCPU={maxCpu} currentMemory={currentMemory} maxMemory={maxMemory} currentStorage={currentStorage} maxStorage={maxStorage}/>
         <button className={styles.addButton} onClick={() => {
             const name = prompt('Name of machine:');
             if(!name)
