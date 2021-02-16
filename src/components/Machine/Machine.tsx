@@ -11,10 +11,11 @@ type MachineProps = {
     vms: VMType[],
     onDeleteVm: (vm: VMType) => void,
     onRemoveVMFromContainer: (vm: VMType) => void,
-    onDelete: () => void
+    onDelete: () => void,
+    onUpdate: () => void
 }
 
-export default function Machine({machine, onDrop, vms, onDeleteVm, onRemoveVMFromContainer, onDelete}: MachineProps) {
+export default function Machine({machine, onDrop, vms, onDeleteVm, onRemoveVMFromContainer, onDelete, onUpdate}: MachineProps) {
     const [{canDrop, isOver}, drop] = useDrop({
         accept: 'vm',
         drop: onDrop,
@@ -29,8 +30,11 @@ export default function Machine({machine, onDrop, vms, onDeleteVm, onRemoveVMFro
     const currentStorage = machine.maxStorage - vms.reduce((acc, curr) => acc + curr.storage, 0);
 
     return <div ref={drop} className={styles.machine}>
-        <div className={styles.title}>
-            {machine.name}
+        <div className={styles.topBar}>
+            <div className={styles.title}>
+                {machine.name}
+            </div>
+            <div className={["material-icons", styles.editButton].join(' ')} onClick={onUpdate}>edit</div>
         </div>
 
         <StatsBars currentCPU={currentCPU} maxCPU={machine.maxCpu} currentMemory={currentMemory} maxMemory={machine.maxMemory} currentStorage={currentStorage} maxStorage={machine.maxStorage}/>

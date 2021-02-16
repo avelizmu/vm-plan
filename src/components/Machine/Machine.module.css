@@ -4,10 +4,20 @@
     height: 100%;
 }
 
+.topBar {
+    width: 100%;
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: row;
+}
+
 .title {
     width: 100%;
     text-align: center;
-    border-bottom: 1px solid black;
+}
+
+.editButton {
+    cursor: pointer;
 }
 
 .vms {

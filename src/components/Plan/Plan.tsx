@@ -86,6 +86,32 @@ export default function Plan() {
                         }])
                     }} onDelete={() => {
                         setMachines(machines.filter(m => m.name !== machine.name))
+                    }} onUpdate={() => {
+                        const name = prompt('Name of machine:', machine.name);
+                        if(!name)
+                            return;
+
+                        const cpu = prompt('Max CPU cores:', machine.maxCpu.toString());
+                        if(!cpu || !parseInt(cpu)) {
+                            return;
+                        }
+
+                        const memory = prompt('Max RAM in GB:', machine.maxMemory.toString());
+                        if(!memory || !parseInt(memory)){
+                            return;
+                        }
+
+                        const storage = prompt('Max storage in GB:', machine.maxStorage.toString());
+                        if(!storage || !parseInt(storage)){
+                            return;
+                        }
+
+                        setMachines([...machines.filter(m => m.name !== machine.name), {
+                            name,
+                            maxCpu: parseInt(cpu),
+                            maxMemory: parseInt(memory),
+                            maxStorage: parseInt(storage)
+                        }])
                     }}/>
                 })
             }
