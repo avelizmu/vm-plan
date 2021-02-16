@@ -36,16 +36,13 @@ export default function StatsBars({currentCPU, maxCPU, currentMemory, maxMemory,
                         /
                         {maxCPU}
                     </div>
-
-                    <div className={[styles.bar, styles.cpuBar].join(' ')} style={{width: `${cpu}%`}}/>
                 </> : <div>
                     <div>
                         CPU Error: Usage of {maxCPU - currentCPU} cores exceeds maximum of {maxCPU} cores
                     </div>
-                    <div className={[styles.bar, styles.cpuBar].join(' ')} style={{width: '100%', background: 'red'}}/>
                 </div>
-
             }
+            <div className={[styles.bar, styles.cpuBar].join(' ')} style={{width: `${currentCPU >= 0 ? cpu : 100}%`, backgroundColor: currentCPU >= 0 ? '' : 'red'}}/>
         </div>
 
         <div className={styles.infoEntry}>
@@ -57,15 +54,14 @@ export default function StatsBars({currentCPU, maxCPU, currentMemory, maxMemory,
                         /
                         {maxMemory}
                     </div>
-
-                    <div className={[styles.bar, styles.memoryBar].join(' ')} style={{width: `${memory}%`}}/>
                 </> : <div>
                     <div>
                         Memory Error: Usage of {maxMemory - currentMemory}GB exceeds maximum of {maxMemory}GB
                     </div>
-                    <div className={[styles.bar, styles.cpuBar].join(' ')} style={{width: '100%', background: 'red'}}/>
                 </div>
             }
+            <div className={[styles.bar, styles.memoryBar].join(' ')} style={{width: `${currentMemory >= 0 ? memory : 100}%`, backgroundColor: currentMemory >= 0 ? '' : 'red'}}/>
+
         </div>
 
         <div className={styles.infoEntry}>
@@ -77,15 +73,13 @@ export default function StatsBars({currentCPU, maxCPU, currentMemory, maxMemory,
                         /
                         {maxStorage}
                     </div>
-
-                    <div className={[styles.bar, styles.storageBar].join(' ')} style={{width: `${storage}%`}}/>
                 </> : <div>
                     <div>
                         Storage Error: Usage of {maxStorage - currentStorage}GB exceeds maximum of {maxStorage}GB
                     </div>
-                    <div className={[styles.bar, styles.cpuBar].join(' ')} style={{width: '100%', background: 'red'}}/>
                 </div>
             }
+            <div className={[styles.bar, styles.storageBar].join(' ')} style={{width: `${currentStorage >= 0 ? storage : 100}%`, backgroundColor: currentStorage >= 0 ? '' : 'red'}}/>
         </div>
     </div>
 }
